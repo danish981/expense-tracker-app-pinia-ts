@@ -20,17 +20,20 @@
     <button class="btn">Add transaction</button>
   </form>
 </template>
-  
-  
-  <script setup>
+
+
+<script setup>
 import { ref } from "vue";
 import { useToast } from "vue-toastification";
+
+import { transactionsStore } from "@/stores/transaction";
+
+const transactions = transactionsStore();
 
 const text = ref("");
 const amount = ref(0);
 
 const emit = defineEmits(["transactionSubmitted"]);
-
 const toast = useToast(); // toast initialized for the use
 
 const onSubmit = () => {
@@ -39,14 +42,14 @@ const onSubmit = () => {
     return;
   }
 
-  const transactionData = {
+  transactions.addTransaction({
     text: text.value,
     amount: amount.value,
-  };
-
-  emit("transactionSubmitted", transactionData);
+  });
 
   text.value = "";
   amount.value = 0;
+
+  
 };
 </script>
