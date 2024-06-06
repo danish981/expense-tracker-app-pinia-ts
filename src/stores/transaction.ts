@@ -1,9 +1,6 @@
 // https://pinia.vuejs.org/core-concepts/state.html
 
 import {defineStore} from 'pinia'
-import {useToast} from "vue-toastification";
-
-const toast = useToast();
 
 interface Transaction { // in php, this is called array shape annotations
     id: number;
@@ -65,7 +62,6 @@ export const transactionsStore = defineStore('transactions', {
                 amount: transaction.amount
             })
 
-            toast.success("Transaction added successfully!");
             this.saveTransactionToLocalStorage()
         },
 
@@ -75,7 +71,6 @@ export const transactionsStore = defineStore('transactions', {
 
         deleteTransaction(id: number) {
             this.transactions = this.transactions.filter((transaction) => transaction.id !== id);
-            toast.success("Transaction deleted successfully!");
             this.saveTransactionToLocalStorage()
         },
 

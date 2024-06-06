@@ -17,7 +17,7 @@ import IncomeExpenses from "./components/IncomeExpenses.vue";
 import TransactionList from "./components/TransactionList.vue";
 import AddTransaction from "./components/AddTransaction.vue";
 
-import {computed, onMounted, ref} from "vue";
+import {onMounted, ref} from "vue";
 import {useToast} from "vue-toastification";
 import {transactionsStore} from "./stores/transaction";
 

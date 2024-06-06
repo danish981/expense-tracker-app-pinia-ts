@@ -3,38 +3,36 @@
   <form id="form" @submit.prevent="onSubmit">
     <div class="form-control">
       <label for="text">Text</label>
-      <input type="text" id="text" v-model="text" placeholder="Enter text..." />
+      <input type="text" id="text" v-model="text" placeholder="Enter text..."/>
     </div>
     <div class="form-control">
       <label for="amount"
-        >Amount <br />
+      >Amount <br/>
         (negative - expense, positive - income)</label
       >
       <input
-        type="number"
-        id="amount"
-        v-model="amount"
-        placeholder="Write text"
+          type="number"
+          id="amount"
+          v-model="amount"
+          placeholder="Write text"
       />
     </div>
     <button class="btn">Add transaction</button>
   </form>
 </template>
 
-
 <script setup>
-import { ref } from "vue";
-import { useToast } from "vue-toastification";
+import {ref} from "vue";
+import {useToast} from "vue-toastification";
 
-import { transactionsStore } from "@/stores/transaction";
+import {transactionsStore} from "@/stores/transaction";
 
 const transactions = transactionsStore();
 
 const text = ref("");
 const amount = ref(0);
 
-const emit = defineEmits(["transactionSubmitted"]);
-const toast = useToast(); // toast initialized for the use
+const toast = useToast();
 
 const onSubmit = () => {
   if (!text.value || !amount.value) {
@@ -50,6 +48,7 @@ const onSubmit = () => {
   text.value = "";
   amount.value = 0;
 
-  
+  toast.success('new record has been added succfully')
+
 };
 </script>
