@@ -48,7 +48,5 @@ const onSubmit = () => {
   text.value = "";
   amount.value = 0;
 
-  toast.success('new record has been added succfully')
-
 };
 </script>
