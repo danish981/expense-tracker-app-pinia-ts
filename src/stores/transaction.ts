@@ -61,6 +61,10 @@ export const transactionsStore = defineStore('transactions', {
 
         addTransaction(transaction: Transaction): void {
 
+            if (this.transactions.some((item) => item.text === transaction.text)) {
+                toast.error('Title already exists')
+                return
+            }
 
             this.transactions.push({
                 id: this.generateUniqueRandomId(),
