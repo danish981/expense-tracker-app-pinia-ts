@@ -1,8 +1,8 @@
 // https://pinia.vuejs.org/core-concepts/state.html
 
-import {defineStore} from 'pinia'
+import { defineStore } from 'pinia'
 
-import {useToast} from "vue-toastification";
+import { useToast } from "vue-toastification";
 
 const toast = useToast()
 
@@ -64,6 +64,14 @@ export const transactionsStore = defineStore('transactions', {
             if (this.transactions.some((item) => item.text === transaction.text)) {
                 toast.error('Title already exists')
                 return
+            }
+
+
+            if (transaction.amount < 0) {    // if the expense is greater than the balance
+                if (Math.abs(transaction.amount) > parseInt(this.getTotal)) {
+                    toast.error('Expense cannot be greater than the balance')
+                    return
+                }
             }
 
             this.transactions.push({
