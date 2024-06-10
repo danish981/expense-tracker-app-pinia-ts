@@ -10,7 +10,7 @@ test('If the needed elements are there which we are going to interact to', async
     await page.goto('localhost:5173')
     await expect(page.locator('input[type="text"]').first()).toHaveValue('')
     await expect(page.locator('input[type="number"]').first()).toHaveValue('0')
-    await expect(page.locator('input[type="button"]').first()).toHaveText('Add transaction')
+    await expect(page.locator('input[type="submit"]').first()).toHaveText('Add transaction')
 })
 
 // can we pass the text to the number element, if the right data is being passed to the save method

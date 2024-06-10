@@ -19,7 +19,12 @@
 <script setup>
 
 import {transactionsStore} from "@/stores/transaction";
+import {onMounted} from "vue";
 
 const store = transactionsStore();
+
+onMounted(() => {
+  store.transactions = store.getTransactionsFromLocalStorage;
+});
 
 </script>
