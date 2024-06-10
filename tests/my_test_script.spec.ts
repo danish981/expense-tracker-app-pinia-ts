@@ -10,13 +10,23 @@ const WRONG_VALUES = [
     '', null, "", undefined, 1 / 0, '*&^%(&^*&^^&$#%$#*&)_(*_)(_)(:"|":}{:|":>'
 ]
 
-test('if the page opened with right url and and title ', async ({page}) => {
-    await page.goto('localhost:5173')
+const DUMMY_LETTER_STRINGS = [
+    'dummy value 1', 'dummy value 2', 'dummy value 3'
+]
+
+const DUMMY_NUMBERS = [
+    400, 500, 450, 900, 120, -50, -90, -400
+]
+
+test('if the page opened with right url and and title and transactions items are not visible', async ({page}) => {
     await expect(page).toHaveURL('http://localhost:5173/')
     await expect(page).toHaveTitle('Expense tracker application')
+    await expect(page.locator('li')).toHaveCount(0)
 })
 
-test('if the submit button and input fields are properly rendered with their attributes ', async ({page}) => {
+// if on the boot of the application, if local storage is empty, it is fetching all the items from the local storage
+
+test('if the submit button and input fields are properly rendered with their attributes when the app is loaded ', async ({page}) => {
     await expect(page.locator('input[type="text"]').first()).toHaveId('text')
     await expect(page.locator('input[type="text"]').first()).toBeVisible()
     await expect(page.locator('input[type="text"]').first()).toHaveValue('')
@@ -39,16 +49,19 @@ test.skip('if the app is working with the wrong values', async ({page}) => {
 
 });
 
-test.skip('after the transaction completed, both the fields turn their original state', async ({page}) => {
+test('after the transaction completed, both the fields turn their original state', async ({page}) => {
     await page.getByRole('button', {name: 'Add transaction'}).click()
     await page.locator('input[type="text"]').first().fill('test')
     await page.locator('input[type="number"]').first().fill('100')
     await page.getByRole('button', {name: 'Add transaction'}).click()
 
-    // todo : check success or warning toast appears
+    // todo : check success or warning toast appears on the top right corner
 
     await expect(page.locator('input[type="text"]').first()).toHaveValue('')
     await expect(page.locator('input[type="number"]').first()).toHaveValue('0')
+
+   //  await checkNumberOfTransactionItemsInLocalStorage(page, 3);
+
 })
 
 // if the new transaction input elements accept the text and the number

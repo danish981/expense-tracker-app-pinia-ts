@@ -30,7 +30,7 @@ export const transactionsStore = defineStore('transactions', {
             return JSON.parse(localStorage.getItem("transactions") || "[]")
         },
 
-        getTotal: (state): number => {  // actually it is the balance
+        getTotal: (state): number => {
             return Number.parseFloat(state.transactions.reduce((acc, transaction) => {
                 return acc + transaction.amount
             }, 0)
@@ -71,7 +71,6 @@ export const transactionsStore = defineStore('transactions', {
             }
 
             if (!/^[a-zA-Z]+$/.test(transaction.text)) {
-                console.log(transaction.text)
                 toast.error('Title can only contain letters');
                 return;
             }
