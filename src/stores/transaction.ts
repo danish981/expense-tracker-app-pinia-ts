@@ -1,6 +1,7 @@
 import {defineStore} from 'pinia'
 
 import {useToast} from "vue-toastification";
+import type {UnwrapRef} from "vue";
 
 const toast = useToast()
 
@@ -57,7 +58,7 @@ export const transactionsStore = defineStore('transactions', {
 
     actions: {
 
-        addTransaction(transaction: Transaction): void {
+        addTransaction(transaction: { amount: UnwrapRef<number>, text: UnwrapRef<string> }): void {
 
             if (this.transactions.some((item) => item.text === transaction.text)) {
                 toast.error('Title already exists')

@@ -9,7 +9,16 @@
 
 - eslint rules
 - husky
-- playwright
+- playwright (some tests, if everything is working fine)
 
-// to look into these things what these are
-// test cases
+### what more can be added here in this application
+
+- the search feature
+- the delete entire transactions button
+- the scrollbar to the transactions if they exceed from a certain limit
+- limit the transactions to just 500 only
+- black and white theme
+- login using local storage or firebase db
+- 
+
+
