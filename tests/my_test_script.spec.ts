@@ -12,6 +12,17 @@ test('if the input elements are blank when the page is opened', async ({page}) =
   await expect(page.locator('input[type="number"]').first()).toHaveValue('0')
 })
 
+// can we pass the text to the number element, if the right data is being passed to the save method
+test.skip('can we pass the text to the number element', async ({page}) => {
+  await page.goto('localhost:5173')
+
+  await page.getByRole('button', {name: 'Add transaction'}).click()
+
+  // when the button is clicked, if the
+  await expect(page.locator('input[type="number"]').first()).toHaveValue('0')
+
+});
+
 // if the new transaction input elements accept the text and the number
 
 // if the add transaction button is working and toast message appears correctly
