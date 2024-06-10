@@ -39,29 +39,13 @@ test('if the submit button and input fields are properly rendered with their att
     await expect(page.locator('button[type="submit"]').first()).toHaveClass('btn')
 })
 
-// can we pass the text to the number element, if the right data is being passed to the save method
-test.skip('if the app is working with the wrong values', async ({page}) => {
-
-    // todo : check with nulls, undefined and empty strings
-
-    await page.getByRole('button', {name: 'Add transaction'}).click()
-    await expect(page.locator('input[type="number"]').first()).toHaveValue('0')
-
-});
-
 test('after the transaction completed, both the fields turn their original state', async ({page}) => {
     await page.getByRole('button', {name: 'Add transaction'}).click()
-    await page.locator('input[type="text"]').first().fill('test')
-    await page.locator('input[type="number"]').first().fill('100')
+    await page.locator('input[type="text"]').first().fill('test value')
+    await page.locator('input[type="number"]').first().fill('200')
     await page.getByRole('button', {name: 'Add transaction'}).click()
-
-    // todo : check success or warning toast appears on the top right corner
-
     await expect(page.locator('input[type="text"]').first()).toHaveValue('')
     await expect(page.locator('input[type="number"]').first()).toHaveValue('0')
-
-   //  await checkNumberOfTransactionItemsInLocalStorage(page, 3);
-
 })
 
 // if the new transaction input elements accept the text and the number
@@ -79,7 +63,6 @@ async function checkNumberOfTransactionItemsInLocalStorage(page: Page, expected:
         return JSON.parse(localStorage['transactions']).length === e;
     }, expected);
 }
-
 
 async function ifTheNumberOfTransactionsInLocalStorageAreGreaterThanFiveHundred(): Promise<boolean> {
     return JSON.parse(localStorage['transactions']).length > 500

@@ -58,51 +58,51 @@ export const transactionsStore = defineStore('transactions', {
 
     actions: {
 
-        addTransaction(transaction: { amount: UnwrapRef<number>, text: UnwrapRef<string> }): void {
+        addTransaction(transaction: { amount: UnwrapRef<number>, text: UnwrapRef<string> }): number | void {
 
             if (this.transactions.some((item) => item.text === transaction.text)) {
                 toast.error('Title already exists')
-                return
+                return -1
             }
 
             if (transaction.text == '') {
                 toast.error('Title cannot be empty')
-                return
+                return -1;
             }
 
             if (!/^[a-zA-Z]+$/.test(transaction.text)) {
                 toast.error('Title can only contain letters');
-                return;
+                return -1;
             }
 
             if (transaction.amount == null) {
                 toast.error('Amount cannot be empty')
-                return
+                return -1
             }
 
             if (Number.isNaN(transaction.amount)) {
                 toast.error('Amount must be a number')
-                return
+                return -1
             }
 
             if (transaction.text.length > 30) {
                 toast.error('Title cannot be more than 30 letters')
-                return
+                return -1
             }
 
             if (transaction.amount == 0) {
                 toast.error('Amount cannot be zero')
-                return
+                return -1
             }
 
             if (transaction.amount >= 100000000000) {
                 toast.error('Amount cannot be greater than 100000000000')
-                return
+                return -1
             }
 
             if ((transaction.amount < 0) && (Math.abs(transaction.amount) > this.getTotal)) {
                 toast.error('Expense cannot be greater than the balance')
-                return
+                return -1
             }
 
             this.transactions.push({

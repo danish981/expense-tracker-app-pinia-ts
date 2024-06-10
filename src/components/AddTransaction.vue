@@ -41,13 +41,15 @@ const onSubmit = () => {
     return;
   }
 
-  transactions.addTransaction({
+  const isTransactionAdded = transactions.addTransaction({
     text: text.value,
     amount: amount.value,
   });
 
-  text.value = "";
-  amount.value = 0;
+  if (isTransactionAdded !== -1) {
+    text.value = "";
+    amount.value = 0;
+  }
 
 };
 </script>
