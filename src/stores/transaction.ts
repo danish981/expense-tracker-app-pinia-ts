@@ -1,5 +1,3 @@
-// https://pinia.vuejs.org/core-concepts/state.html
-
 import {defineStore} from 'pinia'
 
 import {useToast} from "vue-toastification";

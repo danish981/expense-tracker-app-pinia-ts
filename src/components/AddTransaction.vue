@@ -34,6 +34,7 @@ const amount = ref(0);
 
 const toast = useToast();
 
+// todo : we can move this logic into the transactions store
 const onSubmit = () => {
   if (!text.value || !amount.value) {
     toast.error("Both the fields are necessary to be filled");
