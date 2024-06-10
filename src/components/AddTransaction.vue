@@ -3,7 +3,7 @@
   <form id="form" @submit.prevent="onSubmit">
     <div class="form-control">
       <label for="text">Text</label>
-      <input type="text" id="text" v-model="text" placeholder="Enter text..."/>
+      <input id="text" v-model="text" placeholder="Enter text..." type="text"/>
     </div>
     <div class="form-control">
       <label for="amount"
@@ -11,10 +11,10 @@
         (negative - expense, positive - income)</label
       >
       <input
-          type="number"
           id="amount"
           v-model="amount"
           placeholder="Write text"
+          type="number"
       />
     </div>
     <button class="btn">Add transaction</button>

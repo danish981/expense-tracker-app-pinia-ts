@@ -9,7 +9,7 @@
       {{ transaction.text }}
       <span>-$ {{ transaction.amount }} </span
       >
-      <button @click="store.deleteTransaction(transaction.id)" class="delete-btn">
+      <button class="delete-btn" @click="store.deleteTransaction(transaction.id)">
         x
       </button>
     </li>
