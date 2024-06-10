@@ -45,6 +45,7 @@ test.skip('after the transaction completed, both the fields turn their original 
 
 // ensure that if the transaction is negative, it is not greater than the balance
 
+// when there  is not list, then the balance must be zero, 0.00
 
 
 

@@ -29,29 +29,29 @@ export const transactionsStore = defineStore('transactions', {
             return JSON.parse(localStorage.getItem("transactions") || "[]")
         },
 
-        getTotal: (state) => {  // actually it is the balance
-            return state.transactions.reduce((acc, transaction) => {
+        getTotal: (state): number => {  // actually it is the balance
+            return Number.parseFloat(state.transactions.reduce((acc, transaction) => {
                 return acc + transaction.amount
             }, 0)
-                .toFixed(2)
+                .toFixed(2))
         },
 
-        getIncome: (state) => {
-            return state.transactions
+        getIncome: (state): number => {
+            return Number.parseFloat(state.transactions
                 .filter((transaction) => transaction.amount > 0)
                 .reduce((acc, transaction) => {
                     return acc + transaction.amount
                 }, 0)
-                .toFixed(2)
+                .toFixed(2))
         },
 
-        getExpense: (state) => {
-            return state.transactions
+        getExpense: (state): number => {
+            return Number.parseFloat(state.transactions
                 .filter((transaction) => transaction.amount < 0)
                 .reduce((acc, transaction) => {
                     return acc + transaction.amount
                 }, 0)
-                .toFixed(2)
+                .toFixed(2))
         },
     },
 
@@ -69,16 +69,34 @@ export const transactionsStore = defineStore('transactions', {
                 return
             }
 
+            if (transaction.amount == null) {
+                toast.error('Amount cannot be empty')
+                return
+            }
+
+            if (Number.isNaN(transaction.amount)) {
+                toast.error('Amount must be a number')
+                return
+            }
+
+            if (transaction.text.length > 30) {
+                toast.error('Title cannot be more than 30 letters')
+                return
+            }
+
             if (transaction.amount == 0) {
                 toast.error('Amount cannot be zero')
                 return
             }
 
-            if (transaction.amount < 0) {
-                if (Math.abs(transaction.amount) > parseInt(this.getTotal)) {
-                    toast.error('Expense cannot be greater than the balance')
-                    return
-                }
+            if (transaction.amount >= 100000000000) {
+                toast.error('Amount cannot be greater than 100000000000')
+                return
+            }
+
+            if ((transaction.amount < 0) && (Math.abs(transaction.amount) > this.getTotal)) {
+                toast.error('Expense cannot be greater than the balance')
+                return
             }
 
             this.transactions.push({
@@ -108,6 +126,12 @@ export const transactionsStore = defineStore('transactions', {
 
         deleteTransactionsDataFromCache(): void {
             localStorage.removeItem("transactions");
+        },
+
+        resetTransaction(): void {
+            this.transactions = []
+            this.deleteTransactionsDataFromCache()
+            toast.success('All records removed')
         },
 
         getFormattedDate(date: Date): string {
