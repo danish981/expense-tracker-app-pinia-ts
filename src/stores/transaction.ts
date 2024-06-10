@@ -70,6 +70,12 @@ export const transactionsStore = defineStore('transactions', {
                 return
             }
 
+            if (!/^[a-zA-Z]+$/.test(transaction.text)) {
+                console.log(transaction.text)
+                toast.error('Title can only contain letters');
+                return;
+            }
+
             if (transaction.amount == null) {
                 toast.error('Amount cannot be empty')
                 return

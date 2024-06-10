@@ -17,7 +17,7 @@
           type="number"
       />
     </div>
-    <button class="btn">Add transaction</button>
+    <button class="btn" type="submit">Add transaction</button>
   </form>
 </template>
 
