@@ -2,13 +2,13 @@
   <h3>Add new transaction</h3>
   <form id="form" @submit.prevent="onSubmit">
     <div class="form-control">
-      <label for="text">Text</label>
+      <label for="text" style="font-weight: bolder">Text</label>
       <input id="text" v-model="text" placeholder="Enter text..." type="text"/>
     </div>
     <div class="form-control">
       <label for="amount"
-      >Amount <br/>
-        (negative - expense, positive - income)</label
+      ><span style="font-weight: bolder">Amount</span>
+        (-ve for expense, +ve for income)</label
       >
       <input
           id="amount"
