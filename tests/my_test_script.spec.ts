@@ -1,12 +1,16 @@
-import {test, expect} from '@playwright/test';
+import {expect, test} from '@playwright/test';
 
-test('if the page opened with url and title', async ({page}) => {
+test('if the page opened with right url and and title ', async ({page}) => {
   await page.goto('localhost:5173')
   await expect(page).toHaveURL('http://localhost:5173/')
   await expect(page).toHaveTitle('Expense tracker application')
 })
 
-// if the toastr lib is set up correctly
+test('if the input elements are blank when the page is opened', async ({page}) => {
+  await page.goto('localhost:5173')
+  await expect(page.locator('input[type="text"]').first()).toHaveValue('')
+  await expect(page.locator('input[type="number"]').first()).toHaveValue('0')
+})
 
 // if the new transaction input elements accept the text and the number
 
