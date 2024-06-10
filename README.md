@@ -1,6 +1,6 @@
-#### Expense tracker application
+# Expense tracker application
 
-#### questions :
+## questions
 
 - Do we have to load the all items from the pinia store the page the loads
 -

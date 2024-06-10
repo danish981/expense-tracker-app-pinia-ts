@@ -6,9 +6,9 @@ import {createPinia} from 'pinia'
 import Toast from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
 
-import App from './App.vue'
+// todo : fix this error "Could not find a declaration file for module"
 
-// const app = createApp(App)
+import App from './App.vue'
 
 const app = createApp(App)
 
