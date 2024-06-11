@@ -13,7 +13,7 @@
 
 <script setup>
 
-import {transactionsStore} from "@/stores/transaction.ts";
+import { transactionsStore } from '@/stores/transaction.ts';
 
 let store = transactionsStore();
 

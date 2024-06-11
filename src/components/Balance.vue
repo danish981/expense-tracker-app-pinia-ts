@@ -4,7 +4,7 @@
 </template>
 
 <script setup>
-import {transactionsStore} from "@/stores/transaction";
+import { transactionsStore } from '@/stores/transaction';
 
 const store = transactionsStore();
 

@@ -3,7 +3,7 @@
   <form id="form" @submit.prevent="onSubmit">
     <div class="form-control">
       <label for="text" style="font-weight: bolder">Text</label>
-      <input id="text" v-model="text" autocomplete="off" placeholder="Enter income/expense text... e.g (payroll cheque)" type="text"/>
+      <input id="text" v-model="text" autocomplete="off" placeholder="Enter income/expense text... e.g (payroll cheque)" type="text" />
     </div>
     <div class="form-control">
       <label for="amount"
@@ -11,11 +11,11 @@
         (-ve for expense, +ve for income)</label
       >
       <input
-          id="amount"
-          v-model="amount"
-          autocomplete="off"
-          placeholder="Enter the amount... e.g (200)"
-          type="number"
+        id="amount"
+        v-model="amount"
+        autocomplete="off"
+        placeholder="Enter the amount... e.g (200)"
+        type="number"
       />
     </div>
     <button class="btn" type="submit">Add transaction</button>
@@ -23,14 +23,14 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
-import {useToast} from "vue-toastification";
+import { ref } from 'vue';
+import { useToast } from 'vue-toastification';
 
-import {transactionsStore} from "@/stores/transaction";
+import { transactionsStore } from '@/stores/transaction';
 
 const transactions = transactionsStore();
 
-const text = ref("");
+const text = ref('');
 const amount = ref();
 
 const toast = useToast();
@@ -38,7 +38,7 @@ const toast = useToast();
 // we can move this logic to transactionsStore too to make the code cleaner
 const onSubmit = () => {
   if (!text.value || !amount.value) {
-    toast.error("Both the fields are necessary to be filled");
+    toast.error('Both the fields are necessary to be filled');
     return;
   }
 
