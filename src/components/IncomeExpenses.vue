@@ -12,9 +12,7 @@
 </template>
 
 <script setup>
-
 import { transactionsStore } from '@/stores/transaction.ts';
 
 let store = transactionsStore();
-
 </script>

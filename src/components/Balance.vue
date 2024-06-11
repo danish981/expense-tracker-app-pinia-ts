@@ -7,5 +7,4 @@
 import { transactionsStore } from '@/stores/transaction';
 
 const store = transactionsStore();
-
 </script>

@@ -4,12 +4,17 @@
   <form id="form" @submit.prevent="onSubmit">
     <div class="form-control">
       <label for="text" style="font-weight: bolder">Text</label>
-      <input id="text" v-model="text" autocomplete="off" placeholder="Enter income/expense text... e.g (payroll cheque)" type="text" />
+      <input
+        id="text"
+        v-model="text"
+        autocomplete="off"
+        placeholder="Enter income/expense text... e.g (payroll cheque)"
+        type="text"
+      />
     </div>
     <div class="form-control">
       <label for="amount"
-      ><span style="font-weight: bolder">Amount</span>
-        (-ve for expense, +ve for income)</label
+        ><span style="font-weight: bolder">Amount</span> (-ve for expense, +ve for income)</label
       >
       <input
         id="amount"
@@ -52,6 +57,5 @@ const onSubmit = () => {
     text.value = '';
     amount.value = '';
   }
-
 };
 </script>
