@@ -150,3 +150,12 @@ input[type='number'] {
 .list li:hover .delete-btn {
   opacity: 1;
 }
+
+.amount-span {
+  border: 1px solid #ddfdeb;
+  border-radius: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: #ddfdeb;
+  font-weight: bold;
+}

@@ -49,7 +49,7 @@ const onSubmit = () => {
 
   if (isTransactionAdded !== -1) {
     text.value = '';
-    amount.value = '';  // a number actually, we are just clearning the input fields, not changing the types of the inputs
+    amount.value = '';
   }
 
 };

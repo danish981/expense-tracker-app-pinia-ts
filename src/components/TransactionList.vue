@@ -1,5 +1,5 @@
 <template>
-  <h3>History</h3>
+  <h3 v-show="store.transactions.length > 0">History</h3>
   <ul id="list" class="list">
     <li
         v-for="transaction in store.transactions"
@@ -7,7 +7,7 @@
         :class="transaction.amount < 0 ? 'minus' : 'plus'"
     >
       {{ transaction.text }}
-      <span>-$ {{ transaction.amount }} </span
+      <span class="amount-span">$ {{ transaction.amount }} </span
       >
       <button class="delete-btn" @click="store.deleteTransaction(transaction.id)">
         x
