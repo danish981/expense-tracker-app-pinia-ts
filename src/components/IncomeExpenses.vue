@@ -17,6 +17,4 @@ import { transactionsStore } from '@/stores/transaction.ts';
 
 let store = transactionsStore();
 
-// do something when the component loads
-
 </script>

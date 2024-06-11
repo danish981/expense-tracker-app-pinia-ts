@@ -80,6 +80,11 @@ export const transactionsStore = defineStore('transactions', {
         return -1;
       }
 
+      if (this.getTotal == 0 && transaction.amount < 0) {
+        toast.error('Cannot add expense with 0 balance');
+        return -1;
+      }
+
       if (Number.isNaN(transaction.amount)) {
         toast.error('Amount must be a number');
         return -1;
