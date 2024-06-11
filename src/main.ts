@@ -7,7 +7,6 @@ import Toast from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
 
 // todo : fix this error "Could not find a declaration file for module"
-
 import App from './App.vue'
 
 const app = createApp(App)

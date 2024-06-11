@@ -61,7 +61,7 @@ export const transactionsStore = defineStore('transactions', {
         addTransaction(transaction: { amount: UnwrapRef<number>, text: UnwrapRef<string> }): number | void {
 
             if (this.transactions.some((item) => item.text === transaction.text)) {
-                toast.error('Title already exists')
+                toast.error('Transaction already exists by this name')
                 return -1
             }
 
@@ -126,9 +126,21 @@ export const transactionsStore = defineStore('transactions', {
         },
 
         deleteTransaction(id: number): void {
+            const transactionToDelete = this.transactions.find((transaction) => transaction.id === id);
+
+            if (!transactionToDelete) {
+                toast.error('Transaction not found');
+                return;
+            }
+
+            if ((this.getTotal - transactionToDelete.amount) < 0) {
+                toast.error('Cannot delete this transaction because it would result in a negative balance');
+                return;
+            }
+
             this.transactions = this.transactions.filter((transaction) => transaction.id !== id);
-            toast.success('Record removed')
-            this.saveTransactionToLocalStorage()
+            this.saveTransactionToLocalStorage();
+            toast.success('Record removed');
         },
 
         saveTransactionToLocalStorage(): void {
@@ -139,7 +151,7 @@ export const transactionsStore = defineStore('transactions', {
             localStorage.removeItem("transactions");
         },
 
-        resetTransaction(): void {
+        resetTransactions(): void {
             this.transactions = []
             this.deleteTransactionsDataFromCache()
             toast.success('All records removed')
