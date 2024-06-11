@@ -85,6 +85,11 @@ export const transactionsStore = defineStore('transactions', {
                 return -1
             }
 
+            if (transaction.text.length < 4) {
+                toast.error('Title cannot be less than 4 letters')
+                return -1
+            }
+
             if (transaction.text.length > 30) {
                 toast.error('Title cannot be more than 30 letters')
                 return -1
