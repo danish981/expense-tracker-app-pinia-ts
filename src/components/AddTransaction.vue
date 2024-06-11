@@ -1,5 +1,6 @@
 <template>
-  <h3>Add new transaction</h3>
+  <h3 v-if="store.transactions.length === 0">Add your first transaction</h3>
+  <h3 v-else>Add new transaction</h3>
   <form id="form" @submit.prevent="onSubmit">
     <div class="form-control">
       <label for="text" style="font-weight: bolder">Text</label>
@@ -28,7 +29,7 @@ import { useToast } from 'vue-toastification';
 
 import { transactionsStore } from '@/stores/transaction';
 
-const transactions = transactionsStore();
+const store = transactionsStore();
 
 const text = ref('');
 const amount = ref();
@@ -42,7 +43,7 @@ const onSubmit = () => {
     return;
   }
 
-  const isTransactionAdded = transactions.addTransaction({
+  const isTransactionAdded = store.addTransaction({
     text: text.value,
     amount: amount.value,
   });
