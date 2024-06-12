@@ -122,7 +122,7 @@ export const transactionsStore = defineStore('transactions', {
         datetime: this.getFormattedDate(new Date()),
       });
 
-      toast.success('New record added');
+      toast.success('Transaction added successfully');
       this.saveTransactionToLocalStorage();
     },
 
@@ -145,7 +145,7 @@ export const transactionsStore = defineStore('transactions', {
 
       this.transactions = this.transactions.filter((transaction) => transaction.id !== id);
       this.saveTransactionToLocalStorage();
-      toast.success('Record removed');
+      toast.success('Transaction removed successfully');
     },
 
     saveTransactionToLocalStorage(): void {
@@ -155,7 +155,7 @@ export const transactionsStore = defineStore('transactions', {
     removeAllTransactions(): void {
       this.transactions = [];
       localStorage.removeItem('transactions');
-      toast.success('All records removed');
+      toast.success('All transactions removed successfully');
     },
 
     getFormattedDate(date: Date): string {
