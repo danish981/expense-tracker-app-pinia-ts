@@ -33,3 +33,13 @@ Ultimately, weigh the benefits of initial data availability against potential pe
 
 - Prioritize these enhancements based on your needs and available resources.
 - Provide clear documentation for any additional configuration or dependencies for the planned features.
+
+
+### Miscellaneous information to test :
+
+- to start recording tests you need to run ```npx playwright codegen``` command, a browser windows will open and test inspector, you can copy the target elements directly
+- to start a specific test script, you can run ```npx playwright test scriptName```, where _scriptname_ is the name of the script, the words that scriptname contains
+- 
+
+
+

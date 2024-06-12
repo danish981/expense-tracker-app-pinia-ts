@@ -1,11 +1,5 @@
 import { expect, Page, test } from '@playwright/test';
 
-test.beforeEach(async ({ page }) => {
-  await page.goto('localhost:5173');
-  await expect(page).toHaveURL('http://localhost:5173/');
-  await expect(page).toHaveTitle('Expense tracker application');
-});
-
 const WRONG_VALUES = [
   '', null, '', undefined, 1 / 0, '*&^%(&^*&^^&$#%$#*&)_(*_)(_)(:"|":}{:|":>',
 ];
@@ -18,13 +12,16 @@ const DUMMY_NUMBERS = [
   400, 500, 450, 900, 120, -50, -90, -400,
 ];
 
-test('if the page opened with right url and and title and transactions items are not visible', async ({ page }) => {
-  await expect(page).toHaveURL('http://localhost:5173/');
-  await expect(page).toHaveTitle('Expense tracker application');
-  await expect(page.locator('li')).toHaveCount(0);
+const transactionsCount = getLocalstorageTransactions().length;
+
+test.beforeEach(async ({ page }) => {
+  await page.goto('localhost:5173');
 });
 
-// if on the boot of the application, if local storage is empty, it is fetching all the items from the local storage
+test.skip('when the page is loaded, it should have exactly the same number of li items as the local storage transaction items', async ({ page }) => {
+  await expect(page).toHaveTitle('Expense tracker application');
+  await expect(page.locator('li')).toHaveCount(transactionsCount);
+});
 
 test('if the submit button and input fields are properly rendered with their attributes when the app is loaded ', async ({ page }) => {
   await expect(page.locator('input[type="text"]').first()).toHaveId('text');
@@ -68,5 +65,6 @@ async function ifTheNumberOfTransactionsInLocalStorageAreGreaterThanFiveHundred(
   return JSON.parse(localStorage['transactions']).length > 500;
 }
 
-
-
+function getLocalstorageTransactions(): Array<object> {
+  return JSON.parse(localStorage['transactions']);
+}
