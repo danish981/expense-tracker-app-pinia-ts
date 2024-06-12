@@ -1,5 +1,8 @@
 <template>
-  <h3 v-show="store.transactions.length > 0">History</h3>
+  <div v-show="store.transactions.length > 0" class="history-heading">
+    <h3>History ({{ store.transactions.length }})</h3>
+    <button class="btn-danger" @click="store.removeAllTransactions">Delete All</button>
+  </div>
   <ul id="list" class="list">
     <li
       v-for="transaction in store.transactions"
@@ -23,3 +26,14 @@ onMounted(() => {
   store.transactions = store.getTransactionsFromLocalStorage;
 });
 </script>
+
+<style scoped>
+
+.history-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+
+</style>

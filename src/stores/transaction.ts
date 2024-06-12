@@ -152,13 +152,9 @@ export const transactionsStore = defineStore('transactions', {
       localStorage.setItem('transactions', JSON.stringify(this.transactions));
     },
 
-    deleteTransactionsDataFromCache(): void {
-      localStorage.removeItem('transactions');
-    },
-
-    resetTransactions(): void {
+    removeAllTransactions(): void {
       this.transactions = [];
-      this.deleteTransactionsDataFromCache();
+      localStorage.removeItem('transactions');
       toast.success('All records removed');
     },
 
