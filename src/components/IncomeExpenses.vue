@@ -6,13 +6,16 @@
     </div>
     <div>
       <h4>Expense</h4>
-      <p id="money-minus" class="money minus">-$ {{ store.getExpense }}</p>
+      <p id="money-minus" class="money minus"> -$ {{ store.getExpense }}</p>
     </div>
   </div>
 </template>
 
 <script setup>
 import { transactionsStore } from '@/stores/transaction.ts';
+
+
+
 
 let store = transactionsStore();
 </script>
